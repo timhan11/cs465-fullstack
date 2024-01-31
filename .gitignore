@@ -66,3 +66,13 @@ typings/
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+# Ignore MongoDB data files that were created when running mongodb
+app_server/models/data/
+app_server/models/diagnostic.data/
+app_server/models/WiredTiger
+
+# Exclude all files in app_server/models except db.js and travlr.js
+app_server/models/*
+!app_server/models/db.js
+!app_server/models/travlr.js

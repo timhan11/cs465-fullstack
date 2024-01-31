@@ -1,9 +1,8 @@
 let express = require("express");
 let router = express.Router();
+const controller = require("../controllers/contact");
 
 
-const ctrlMain = require("../controllers/main");
-
-router.get("/", ctrlMain.index);
+router.get("/", controller.contact);
 
 module.exports = router;
