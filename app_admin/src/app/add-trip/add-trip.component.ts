@@ -1,15 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
-import { TripDataService } from "../services/trip-data.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TripDataService } from '../services/trip-data.service';
 
 @Component({
-  selector: "app-add-trip",
-  templateUrl: "./add-trip.component.html",
-  styleUrls: ["./add-trip.component.css"],
+  selector: 'app-add-trip',
+  templateUrl: './add-trip.component.html',
+  styleUrls: ['./add-trip.component.css'],
 })
 export class AddTripComponent implements OnInit {
-  addForm: FormGroup;
+  addForm: FormGroup = new FormGroup({
+    _id: new FormGroup({}),
+    code: new FormGroup({}),
+    name: new FormGroup({}),
+    length: new FormGroup({}),
+    start: new FormGroup({}),
+    resort: new FormGroup({}),
+    perPerson: new FormGroup({}),
+    image: new FormGroup({}),
+    description: new FormGroup({}),
+  });
   submitted = false;
 
   constructor(
@@ -21,23 +31,23 @@ export class AddTripComponent implements OnInit {
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       _id: [],
-      code: ["", Validators.required],
-      name: ["", Validators.required],
-      length: ["", Validators.required],
-      start: ["", Validators.required],
-      resort: ["", Validators.required],
-      perPerson: ["", Validators.required],
-      image: ["", Validators.required],
-      description: ["", Validators.required],
+      code: ['', Validators.required],
+      name: ['', Validators.required],
+      length: ['', Validators.required],
+      start: ['', Validators.required],
+      resort: ['', Validators.required],
+      perPerson: ['', Validators.required],
+      image: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
 
   onSubmit() {
     this.submitted = true;
     if (this.addForm.valid) {
-      this.tripService.addTrip(this.addForm.value).then((data) => {
+      this.tripService.addTrip(this.addForm.value).then((data: any) => {
         console.log(data);
-        this.router.navigate([""]);
+        this.router.navigate(['']);
       });
     }
   }
